@@ -1,0 +1,38 @@
+name: kdts
+on:
+  workflow_dispatch:
+    schedule:
+      - cron: '0 */1 * * *'
+
+    watch:
+      types: [ started ]
+jobs:
+   build:
+       runs-on: windows-latest
+       steps:
+          - uses: actions/checkout@v2
+          - uses: szenius/set-timezone@v1.0
+            with:
+                timezoneWindows: "Asia/Beijing"
+          - name: Set up Python 3.7
+            uses: actions/setup-python@v2
+            with:
+                python-version: 3.7
+          - name: install pip packages
+            run: python -m pip install --upgrade pip
+          - name: install requests
+            run: pip install requests
+          - name: kdts.py
+            run: python kdts.py
+            env:
+              Province: ${{ secrets.Province }}
+              City: ${{ secrets.City }}
+              Area: ${{ secrets.Area }}
+              Address: ${{ secrets.Address }}
+          - name: commit push
+            run: |
+              git config --global user.email 2544624953@qq.com
+              git config --global user.name micai-cloud
+              git add .
+              git commit -m "update"
+              git push
