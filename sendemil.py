@@ -13,7 +13,7 @@ def send(TET):
     msg["From"] = mail_sender #发送人
     msg["To"] = "2544624953@qq.com" #接收人
 
-    msgtet = MIMEText(TET + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())), 'plain', 'utf-8')
+    msgtet = MIMEText(TET + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 8 * 60 * 60 * 1000)), 'plain', 'utf-8')
     msg.attach(msgtet)
     ## 发送邮件
     s = smtplib.SMTP() #实例化对象
