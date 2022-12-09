@@ -25,10 +25,9 @@ jobs:
           - name: kdts.py
             run: python kdts.py
             env:
-              Province: ${{ secrets.Province }}
-              City: ${{ secrets.City }}
-              Area: ${{ secrets.Area }}
-              Address: ${{ secrets.Address }}
+              content: ${{ secrets.content }}
+              name: ${{ secrets.name }}
+              password: ${{ secrets.password }}
           - name: commit push
             run: |
               git config --global user.email 2544624953@qq.com
