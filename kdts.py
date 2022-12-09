@@ -1,6 +1,7 @@
 from sendemil import send
 import requests
 from os import environ
+import time
 def get_environ(key, default="", output=True):
     def no_read():
         if output:
@@ -11,19 +12,40 @@ Province = get_environ("Province")
 City = get_environ("City")
 Area = get_environ("Area")
 Address = get_environ("Address")
+t = int(time.time())
 url = 'https://www.kuaidi100.com/apicenter/order.do?method=expressStopInquiries'
 headers = {
-    'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3880.400 QQBrowser/10.8.4554.400',
+    "Accept": "application/json, text/javascript, */*; q=0.01",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+    "Connection": "keep-alive",
+    "Content-Length": "177",
+    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "Cookie": "_gcl_au=1.1.105637400.{}; _ga=GA1.1.417363123.{}; _ga_RX03B5S2PX=GS1.1.{}.1.1.1670071368.46.0.0; _adadqeqwe1321312dasddocTitle=kuaidi100; _adadqeqwe1321312dasddocReferrer=; _adadqeqwe1321312dasddocHref=; Hm_lvt_22ea01af58ba2be0fec7c11b25e88e6c=1670071354,1670132879,1670216039; WWWID=WWWF21B4E55B3CB6DA8542216F1163EA0E3; Hm_lpvt_22ea01af58ba2be0fec7c11b25e88e6c=1670224704".format(t,t,t,t,t),
+    "Host": "www.kuaidi100.com",
+    "Origin": "https://www.kuaidi100.com",
+    "Referer": "https://www.kuaidi100.com/stop/stop.jsp",
+    "sec-ch-ua": "\"Google Chrome\";v=\"107\",\"Chromium\";v=\"107\",\"Not=A?Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+
+    "Sec-Fetch-Site":"same-origin",
+    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+    "X-Requested-With":"XMLHttpRequest"
 }
+
 data = {
 'method': 'expressStopInquiries',
 'platform': 'WWW',
-'toProvince': Province,
-'toCity': City,
-'toArea': Area,
-'toAddress': Address
+'toProvince': '河北省',
+'toCity': '沧州市',
+'toArea': '南皮县',
+'toAddress': '潞灌乡辛庄村'
 }
 kddict = requests.post(url=url,headers=headers,data=data).json()
+print(kddict)
 kdlist = kddict['data']['toReachable']
 state = [{'快递':'圆通','状态':'','原因':''},{'快递':'申通','状态':'','原因':''},{'快递':'中通','状态':'','原因':''},{'快递':'韵达','状态':'','原因':''},{'快递':'极兔','状态':'','原因':''},{'快递':'德邦','状态':'','原因':''},{'快递':'京东','状态':'','原因':''},{'快递':'顺丰','状态':'','原因':''},{'快递':'邮政','状态':'','原因':''}]
 for i in range(len(kdlist)):
