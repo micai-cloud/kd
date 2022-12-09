@@ -16,6 +16,8 @@ Name里面填写变量名，Secret里面填写变量值.
 |2| name     | 手机号(需要去快递100注册一个账号，账号就是手机号)|
 |3| password     | 密码(需要去快递100注册一个账号，密码在8位以上)|
 |4| receiver     | 接收消息的邮箱，例如xxxxxxxxxx@qq.com或者xxxxxx@163.com|
+
+
 添加一个变量名，然后添加对应的变量值，再点击add secrets.所以四个变量，一共要添加4次。
 
 完成点击最上面一排Actions，再点kdts, 最后点击Run workflow测试邮箱是否收到邮件就OK了
