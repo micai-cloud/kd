@@ -146,6 +146,6 @@ def main():
         file.seek(0,0)
         file.write(result)
         file.close()
-        send(content+'\n'+reach + '\n' + stop)
+        send(content+'\n'+reach + '\n' + stop,receiver)
 if __name__ == '__main__':
      main()
