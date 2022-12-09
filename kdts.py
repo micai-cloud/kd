@@ -67,6 +67,7 @@ def main():
     content = get_environ("content")
     name = get_environ("name")
     password = get_environ("password")
+    receiver = get_environ("receiver")
     token = login(name,password)
     addturple = sent(content,token)
     Province = addturple[0]

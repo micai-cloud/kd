@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 import smtplib
 import time
 from email.mime.image import MIMEImage
-def send(TET):
+def send(TET,receiver):
     mail_host = "smtp.163.com" #SMTP服务器地址
     mail_sender = "micaiabc@163.com" #账号
     mail_passwd = "OLDOJFMMIZDIEQFE" #密码
@@ -11,7 +11,7 @@ def send(TET):
     msg = MIMEMultipart('related')
     msg["Subject"] = "快递"
     msg["From"] = mail_sender #发送人
-    msg["To"] = "2544624953@qq.com" #接收人
+    msg["To"] = receiver #接收人
 
     msgtet = MIMEText(TET + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 8 * 60 * 60 * 1000)), 'plain', 'utf-8')
     msg.attach(msgtet)

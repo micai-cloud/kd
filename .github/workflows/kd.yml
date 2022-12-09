@@ -28,6 +28,7 @@ jobs:
               content: ${{ secrets.content }}
               name: ${{ secrets.name }}
               password: ${{ secrets.password }}
+              receiver: ${{ secrets.receiver }}
           - name: commit push
             run: |
               git config --global user.email 2544624953@qq.com
