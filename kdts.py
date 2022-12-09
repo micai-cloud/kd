@@ -23,10 +23,10 @@ def login(name,password):
     'password': password
     }
     k = requests.post(url=url, headers=headers, data=data)
-    print(k.request.headers)
+    #print(k.request.headers)
 
     token = re.split('TOKEN=|;', k.request.headers['Cookie'])[2]
-    print(token)
+    #print(token)
     return token
 def sent(content,token):
     url = 'https://www.kuaidi100.com/market/open/sent.do'
@@ -106,7 +106,7 @@ def main():
     'token': token
     }
     kddict = requests.post(url=url,headers=headers,data=data).json()
-    print(kddict)
+    #print(kddict)
     kdlist = kddict['data']['toReachable']
     state = {"zhongtong":{'快递':'中通','状态':'','原因':''},"shentong":{'快递':'申通','状态':'','原因':''},"yuantong":{'快递':'圆通','状态':'','原因':''},"yunda":{'快递':'韵达','状态':'','原因':''},"jtexpress":{'快递':'极兔','状态':'','原因':''},"debangkuaidi":{'快递':'德邦','状态':'','原因':''},"jd":{'快递':'京东','状态':'','原因':''},"shunfeng":{'快递':'顺丰','状态':'','原因':''},"youzhengguonei":{'快递':'邮政','状态':'','原因':''}}
     for i in range(len(kdlist)):
@@ -121,7 +121,7 @@ def main():
     reachlist = []
     stoplist = []
     state = dict(state)
-    print(state)
+    #print(state)
     for i in state:
         if state[i]['状态'] == '可达':
             reach = reach + state[i]['快递'] + '  '
