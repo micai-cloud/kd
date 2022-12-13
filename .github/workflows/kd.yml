@@ -1,11 +1,11 @@
 name: kdts
 on:
   workflow_dispatch:
-    schedule:
-      - cron: '0 */1 * * *'
+  schedule:
+    - cron: '0 */1 * * *'
 
-    watch:
-      types: [ started ]
+  watch:
+    types: [ started ]
 jobs:
    build:
        runs-on: windows-latest

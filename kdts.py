@@ -23,7 +23,7 @@ def login(name,password):
     'password': password
     }
     k = requests.post(url=url, headers=headers, data=data)
-    #print(k.request.headers)
+    print(k.request.headers)
 
     token = re.split('TOKEN=|;', k.request.headers['Cookie'])[2]
     #print(token)
@@ -64,10 +64,14 @@ def sent(content,token):
         subArea = sentlists['subArea']
         return province,city,district,subArea
 def main():
-    content = get_environ("content")
+    '''content = get_environ("content")
     name = get_environ("name")
     password = get_environ("password")
-    receiver = get_environ("receiver")
+    receiver = get_environ("receiver")'''
+    content = '河北省沧州市南皮县潞灌乡辛庄村'
+    name = '15132723127'
+    password = 'a6953267A'
+    receiver = '2544624953@qq.com'
     token = login(name,password)
     addturple = sent(content,token)
     Province = addturple[0]
